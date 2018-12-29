@@ -1,0 +1,106 @@
+SCM  and the CI/CD Pipeline
+ Source Control Management is an important component of our CI/CD Pipeline
+                                                    
+.  It is a huge part of the daily dev workflow: 
+       . All code chnaged made by devs will need to be tacked in SCM
+       . Devs will use SCM to track their changes seperately and then merge them together
+
+.  All pieces of automation that need to interact with the source code will use SCM:
+       . Continuous Integration (CI) will get the code from SCM
+       . SCM will notigy the CI server when code needs to be built 
+
+GIT SCM
+We will be using Git, and specifically GitHub,to manage the source code for the shchedule app
+
+.  Before moving forward , you need a basic understanding of a Git-based workflow
+.  You need to know what steps need to be done in order to make a change to the source code and make ensure that chnage is managed in Git:
+        .    Cloning
+        .    Adding
+        .    Commiting
+        .    Pushing
+        .    Branching
+        .    Merging
+        .    Pull Requests 
+Git installation on Centos:
+         .   yum install -y git                                                                             
+         .    git config –global user.name “komma”
+         .    git config –global user.email “komma@gmail.com”
+Creating Github Forks:
+         Forks are a useful tool for working with GitHub projects. Forks provide a way for any user to create their own personal copy of a GitHub repository which they can fully control without interfering with other users. They are widely used in managing open source projects, and they will be used frequently in this course. In this lesson, you will learn how to create a fork of a GitHub repository.
+If you want to follow along, the repository used to create a fork in this lesson's demonstration can be found here: https://github.com/linuxacademy/cicd-pipeline-train-schedule-git
+
+Making changes in Git:
+git clone 
+git status
+git add <file>
+git add .
+Git add -A
+git commit -m “message descriibing the change”
+git push -u <remote name,usually origin> <branch name>(incase if branch which is present in local but not on the remote repo)
+
+Branches and Tags:
+Git branches and tags often play a role in CI/CD automation. You will need a basic understanding of these concepts in order to proceed with later steps of implementing a CI/CD Pipeline. 
+Git branches are used to maintain multiple versions of the code with different changes simultaneously
+Many teams use branches as part of the daily workflow
+Branches can also be used to interact with a CI/CD Pipeline.For example,some teams maintain  a production branch, and merging changes into this branch initiates automated processess involved with deploying to production.
+By default, a git repository starts with one branch called “master.”
+   git checkout:
+     git checkout checks out an existing branch.This means that it puts the contents of the branch into your working tree and your working copy of the source code files.
+When we commit, whichever branch we have checked out will be the branch that the commit is added to.
+           Git checkout <branch>
+we can create a new branch and check it out immediatly with the -b flag:
+    git checkout -b <new branch>
+Git Tag:
+Tags in git are simply pointers to a particular commit.They can be used to provide a name that can be used to reference that commit in the future.
+One usecase for tags is to tag source code commits with the version of the doftware that they represent, so if a particular revicion gets released as version 1.0.0, it could be tagged as “v1.0.0” in order to indicate that.  
+    Git tag <tag name> git tag v1.0.0
+Pull Requests:
+                                                                  
+Build Automation:
+Introducing Build Automation:
+Build automation means is the automation of tasks needed in order to process and prepares source         code for deployment to prodcution. It is an important compoenent of continuous integration.
+This includes things like:
+      .    Compiling
+      .    Dependency Mangament 
+      .    Executing Automation Tests
+      .    Packaging the App for Deployment
+In this course,we will use Gradle as our build automation tool.There are plenty of other tools, but Gradle is very powerful for doing the things we will need to do.
+Installing Gradle:
+Gradle can often be install using package manager
+   dependencies: jdk7 or higher
+On some systems, you will need to download and extract a zip file
+to check gradle version: gradle –version
+Gradle Basics:
+
+
+
+Automated Testing:
+
+
+Continuous Integration:
+CI Overview:
+Continuous Integration(CI):The practice of frequently merging code changes.
+But frequnetly merges cause dufficulties:
+    . what if code doesn’t compile after a merge?
+    . what if someone broke something?
+    . It would be a lot of work to check these things on every merge
+The solution: automate it!
+How CI Works
+A CI server executes a build that automatically prepares/compiles the code and runs automated tests
+Usually, the CI Server automatically detects code chnages in source control and runs the build whenever there is a change.
+If something is wrong, the build fails.The team can get immediate feedback if their changebroke something.
+Merging frequently throughout the day and getting quick feedback means that if broke something you broke it with your chnages within the last couple hours.This is much easier to fix than if you broke something with your chnages from a week ago!
+We will be using jenkins as our CI server in this course.
+
+
+
+
+
+
+
+             
+
+
+  
+
+                                                                                                                           
